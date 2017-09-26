@@ -32,3 +32,11 @@ func ExampleListar() {
 	Listar(texto, "MARK")
 	// Output: U+003F	?	QUESTION MARK
 }
+
+func ExampleListar_doisResultados() {
+	texto := strings.NewReader(linhas3Da43)
+	Listar(texto, "SIGN")
+	// Output:
+	// U+003D	=	EQUALS SIGN
+	// U+003E	>	GREATER-THAN SIGN
+}
