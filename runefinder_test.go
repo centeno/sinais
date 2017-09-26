@@ -1,8 +1,9 @@
 package main
 
 import (
-	"testing"
+	"os"
 	"strings"
+	"testing"
 )
 
 const linhaLetraA = "0041;LATIN CAPITAL LETTER A;Lu;0;L;;;;;N;;;;0061;"
@@ -16,6 +17,7 @@ const linhas3Da43 = `
 0042;LATIN CAPITAL LETTER B;Lu;0;L;;;;;N;;;;0062;
 0043;LATIN CAPITAL LETTER C;Lu;0;L;;;;;N;;;;0063;
 `
+
 func TestAnalisarLinha(t *testing.T) {
 	runa, nome := AnalisarLinha(linhaLetraA)
 	if runa != 'A' {
@@ -39,4 +41,13 @@ func ExampleListar_doisResultados() {
 	// Output:
 	// U+003D	=	EQUALS SIGN
 	// U+003E	>	GREATER-THAN SIGN
+}
+
+func Example() {
+	oldArgs := os.Args
+	defer func() { os.Args = oldArgs }()
+	os.Args = []string{"", "cruzeiro"}
+	main()
+	// Output:
+	// U+20A2	₢	CRUZEIRO SIGN
 }

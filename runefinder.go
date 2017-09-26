@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -29,4 +31,14 @@ func Listar(texto io.Reader, consulta string) {
 			fmt.Printf("U+%04X\t%[1]c\t%s\n", runa, nome)
 		}
 	}
+}
+
+func main() {
+	ucd, err := os.Open("UnicodeData.txt") 
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	defer func() { ucd.Close() }() 
+	consulta := strings.Join(os.Args[1:], " ")
+	Listar(ucd, strings.ToUpper(consulta))
 }
